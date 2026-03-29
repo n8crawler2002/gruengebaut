@@ -212,8 +212,7 @@
         .tl-tags{display:flex;flex-wrap:wrap;gap:.35rem}
         .tl-item:nth-child(odd) .tl-tags{justify-content:flex-end}
         .tl-tag{font-family:var(--fm);font-size:.58rem;letter-spacing:.08em;padding:.18rem .55rem;border:1px solid var(--border);color:var(--text-muted);text-transform:uppercase}
-        .tl-popup{position:absolute;z-index:50;width:300px;background:var(--bg-card);border:1px solid var(--border);padding:1.4rem;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;box-shadow:0 24px 64px rgba(0,0,0,.7);top:calc(100% + .6rem)}
-        .tl-item:nth-child(odd)  .tl-popup{right:0}
+        .tl-popup{position:fixed;z-index:200;width:300px;background:var(--bg-card);border:1px solid var(--border);padding:1.4rem;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;box-shadow:0 24px 64px rgba(0,0,0,.9);}        .tl-item:nth-child(odd)  .tl-popup{right:0}
         .tl-item:nth-child(even) .tl-popup{left:0}
         .tl-content:hover .tl-popup{opacity:1;transform:translateY(0);pointer-events:auto}
         .popup-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
