@@ -212,9 +212,7 @@
         .tl-tags{display:flex;flex-wrap:wrap;gap:.35rem}
         .tl-item:nth-child(odd) .tl-tags{justify-content:flex-end}
         .tl-tag{font-family:var(--fm);font-size:.58rem;letter-spacing:.08em;padding:.18rem .55rem;border:1px solid var(--border);color:var(--text-muted);text-transform:uppercase}
-        .tl-popup{position:fixed;z-index:200;width:300px;background:var(--bg-card);border:1px solid var(--border);padding:1.4rem;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;box-shadow:0 24px 64px rgba(0,0,0,.9);}        .tl-item:nth-child(odd)  .tl-popup{right:0}
-        .tl-item:nth-child(even) .tl-popup{left:0}
-        .tl-content:hover .tl-popup{opacity:1;transform:translateY(0);pointer-events:auto}
+        .tl-popup{position:fixed;z-index:200;width:300px;background:#0C1A0F;border:1px solid rgba(62,224,117,0.3);padding:1.4rem;pointer-events:none;opacity:0;transition:opacity .25s;box-shadow:0 24px 64px rgba(0,0,0,.95);}
         .popup-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
         .popup-ico{width:34px;height:34px;flex-shrink:0;background:rgba(62,224,117,.1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--accent)}
         .popup-co{font-family:var(--fd);font-size:.95rem;font-weight:700;color:var(--accent)}
@@ -286,7 +284,6 @@
             .tl-item:nth-child(odd) .tl-node,.tl-item:nth-child(even) .tl-node{grid-column:1;grid-row:1;margin-left:11px;margin-top:1.1rem}
             .tl-item:nth-child(odd) .tl-spacer,.tl-item:nth-child(even) .tl-spacer{display:none}
             .tl-item:nth-child(odd) .tl-tags{justify-content:flex-start}
-            .tl-popup{left:8px!important;right:8px!important;width:auto!important;background:var(--bg-card)!important;border:1px solid var(--accent)!important;}
             .tools-grid{grid-template-columns:1fr}
             .contact-grid{grid-template-columns:1fr;gap:3rem}
             .f-row{grid-template-columns:1fr}
@@ -659,7 +656,7 @@
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
-                        <a href="mailto:kontakt@gruengebaut.de">kontakt@gruengebaut.de</a>
+                        <a href="/cdn-cgi/l/email-protection#b3d8dcddc7d2d8c7f3d4c1c6d6ddd4d6d1d2c6c79dd7d6"><span class="__cf_email__" data-cfemail="ec878382988d8798ac8b9e9989828b898e8d9998c28889">[email&#160;protected]</span></a>
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
@@ -720,7 +717,7 @@
     </nav>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     document.getElementById('fyear').textContent = new Date().getFullYear();
 
     function toggleMenu() {
@@ -762,43 +759,65 @@
     });
 
     document.querySelectorAll('.tl-content').forEach(el => {
-    el.addEventListener('click', function(e) {
-        const popup = this.querySelector('.tl-popup'); if (!popup) return;
-        const isOpen = popup.style.opacity === '1';
-        document.querySelectorAll('.tl-popup').forEach(x => {
-            x.style.opacity='0'; x.style.transform='translateY(8px)'; x.style.pointerEvents='none';
-        });
-        if (!isOpen) {
-            const rect = this.getBoundingClientRect();
-            const popupW = 300;
-            // Position: links oder rechts je nach Platz
-            let left = rect.left;
-            if (left + popupW > window.innerWidth - 16) left = window.innerWidth - popupW - 16;
-            if (left < 8) left = 8;
-            // Position: oben oder unten je nach Platz
-            let top = rect.bottom + 8;
-            if (top + 320 > window.innerHeight) top = rect.top - 320;
-            if (top < 8) top = 8;
-            popup.style.left = left + 'px';
-            popup.style.top  = top  + 'px';
-            popup.style.opacity='1'; popup.style.transform='translateY(0)'; popup.style.pointerEvents='auto';
-        }
-    });
-});
+        el.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const popup = this.querySelector('.tl-popup');
+            if (!popup) return;
+            const isOpen = popup.style.opacity === '1';
 
-// Popup schließen bei Scroll oder Klick außerhalb
-document.addEventListener('scroll', () => {
-    document.querySelectorAll('.tl-popup').forEach(x => {
-        x.style.opacity='0'; x.style.pointerEvents='none';
-    });
-}, {passive:true});
-document.addEventListener('click', e => {
-    if (!e.target.closest('.tl-content')) {
-        document.querySelectorAll('.tl-popup').forEach(x => {
-            x.style.opacity='0'; x.style.pointerEvents='none';
+            // Close all
+            document.querySelectorAll('.tl-popup').forEach(x => {
+                x.style.opacity = '0';
+                x.style.pointerEvents = 'none';
+            });
+
+            if (!isOpen) {
+                const rect = this.getBoundingClientRect();
+                const isMobile = window.innerWidth <= 960;
+                const margin = 8;
+
+                if (isMobile) {
+                    // Mobile: full width minus margins, below the item
+                    const w = window.innerWidth - margin * 2;
+                    let top = rect.bottom + margin;
+                    // If not enough space below, go above
+                    if (top + 340 > window.innerHeight) top = Math.max(margin, rect.top - 340);
+                    popup.style.width  = w + 'px';
+                    popup.style.left   = margin + 'px';
+                    popup.style.top    = top + 'px';
+                } else {
+                    // Desktop: 300px wide, smart left/right positioning
+                    const pw = 300;
+                    let left = rect.left;
+                    // Try to align with the item; shift left if overflowing right edge
+                    if (left + pw > window.innerWidth - margin) left = window.innerWidth - pw - margin;
+                    if (left < margin) left = margin;
+                    // Below item; shift up if overflowing bottom
+                    let top = rect.bottom + margin;
+                    if (top + 340 > window.innerHeight) top = Math.max(margin, rect.top - 340);
+                    popup.style.width = pw + 'px';
+                    popup.style.left  = left + 'px';
+                    popup.style.top   = top + 'px';
+                }
+
+                popup.style.opacity      = '1';
+                popup.style.pointerEvents = 'auto';
+            }
         });
-    }
-});
-</script>
+    });
+
+    // Close popup on outside click or scroll
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.tl-popup').forEach(x => {
+            x.style.opacity = '0';
+            x.style.pointerEvents = 'none';
+        });
+    });
+    document.addEventListener('scroll', () => {
+        document.querySelectorAll('.tl-popup').forEach(x => {
+            x.style.opacity = '0';
+            x.style.pointerEvents = 'none';
+        });
+    }, {passive: true});</script>
 </body>
 </html>
