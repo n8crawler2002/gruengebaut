@@ -762,13 +762,43 @@
     });
 
     document.querySelectorAll('.tl-content').forEach(el => {
-        el.addEventListener('click', function() {
-            const p = this.querySelector('.tl-popup'); if (!p) return;
-            const isOpen = p.style.opacity === '1';
-            document.querySelectorAll('.tl-popup').forEach(x => { x.style.opacity='0'; x.style.transform='translateY(8px)'; x.style.pointerEvents='none'; });
-            if (!isOpen) { p.style.opacity='1'; p.style.transform='translateY(0)'; p.style.pointerEvents='auto'; }
+    el.addEventListener('click', function(e) {
+        const popup = this.querySelector('.tl-popup'); if (!popup) return;
+        const isOpen = popup.style.opacity === '1';
+        document.querySelectorAll('.tl-popup').forEach(x => {
+            x.style.opacity='0'; x.style.transform='translateY(8px)'; x.style.pointerEvents='none';
         });
+        if (!isOpen) {
+            const rect = this.getBoundingClientRect();
+            const popupW = 300;
+            // Position: links oder rechts je nach Platz
+            let left = rect.left;
+            if (left + popupW > window.innerWidth - 16) left = window.innerWidth - popupW - 16;
+            if (left < 8) left = 8;
+            // Position: oben oder unten je nach Platz
+            let top = rect.bottom + 8;
+            if (top + 320 > window.innerHeight) top = rect.top - 320;
+            if (top < 8) top = 8;
+            popup.style.left = left + 'px';
+            popup.style.top  = top  + 'px';
+            popup.style.opacity='1'; popup.style.transform='translateY(0)'; popup.style.pointerEvents='auto';
+        }
     });
+});
+
+// Popup schließen bei Scroll oder Klick außerhalb
+document.addEventListener('scroll', () => {
+    document.querySelectorAll('.tl-popup').forEach(x => {
+        x.style.opacity='0'; x.style.pointerEvents='none';
+    });
+}, {passive:true});
+document.addEventListener('click', e => {
+    if (!e.target.closest('.tl-content')) {
+        document.querySelectorAll('.tl-popup').forEach(x => {
+            x.style.opacity='0'; x.style.pointerEvents='none';
+        });
+    }
+});
 </script>
 </body>
 </html>
