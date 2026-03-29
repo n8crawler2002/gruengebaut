@@ -11,6 +11,8 @@
     <meta name="author" content="Bodo Becker | gruengebaut new.energy.consulting">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://gruengebaut.de/">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="favicon.svg">
     <meta name="geo.region" content="DE-NW">
     <meta name="geo.placename" content="Troisdorf">
 
@@ -259,7 +261,8 @@
         .form-success{display:none;background:rgba(62,224,117,.08);border:1px solid var(--border);padding:1.2rem 1.5rem;font-size:.9rem;color:var(--accent)}
 
         /* FOOTER */
-        footer{background:var(--bg-card);border-top:1px solid var(--border-sub);padding:2.2rem 4rem;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+        footer{background:var(--bg-card);border-top:2px solid var(--border);padding:2.4rem 4rem;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+        footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent 60%);}
         .footer-brand{font-family:var(--fm);font-size:.68rem;color:var(--text-muted);line-height:1.8}
         .footer-brand strong{color:var(--accent)}
         .footer-brand .sep{color:var(--text-muted);margin:0 .35em}
