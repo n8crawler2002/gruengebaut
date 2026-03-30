@@ -754,7 +754,7 @@
         const msg = document.getElementById('f-msg').value.trim();
         const sub = encodeURIComponent('Mandatsanfrage: ' + (topic||'Kontaktaufnahme') + ' | ' + name);
         const bod = encodeURIComponent('Name: '+name+'\nUnternehmen: '+(co||'–')+'\nE-Mail: '+email+'\nMandatsfeld: '+(topic||'–')+'\n\n'+msg);
-        window.location.href = 'mailto:kontakt@gruengebaut.de?subject='+sub+'&body='+bod;
+        window.location.href = 'mailto:info@gruengebaut.de?subject='+sub+'&body='+bod;
         document.getElementById('formSuccess').style.display = 'block';
     });
 
