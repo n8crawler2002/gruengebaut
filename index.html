@@ -265,6 +265,14 @@
         .footer-r a{font-family:var(--fm);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-sec);text-decoration:none;transition:color .22s}
         .footer-r a:hover{color:var(--accent)}
 
+        /* STAT WIDE + KLIMAWIRKUNG */
+        .stat-wide{grid-column:1/-1;background:var(--bg-card);border:1px solid var(--border);padding:1.5rem 2rem;position:relative;overflow:hidden;display:flex;align-items:center;gap:2.5rem}
+        .stat-wide::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
+        .stat-wide-icon{width:36px;height:36px;color:var(--accent);flex-shrink:0}
+        .stat-wide-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+        .stat-wide-title{font-family:var(--fd);font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+        .stat-wide-sub{font-size:.82rem;color:var(--text-sec)}
+
         /* CLIFTONSTRENGTHS BADGE */
         .strengths-wrap{margin-top:2.5rem;background:var(--bg-card);border:1px solid var(--border);border-top:2px solid var(--accent);padding:1.6rem 2rem}
         .strengths-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem}
@@ -317,7 +325,7 @@
     </a>
     <div class="nav-right">
         <ul class="nav-links">
-            <li><a href="#brand">Über uns</a></li>
+            <li><a href="#brand">Über mich</a></li>
             <li><a href="#services">Leistungen</a></li>
             <li><a href="#timeline">Track Record</a></li>
             <li><a href="#tools">Expertise</a></li>
@@ -335,7 +343,7 @@
 </nav>
 
 <div class="mob-nav" id="mobMenu">
-    <a href="#brand"    onclick="closeMenu()">Über uns</a>
+    <a href="#brand"    onclick="closeMenu()">Über mich</a>
     <a href="#services" onclick="closeMenu()">Leistungen</a>
     <a href="#timeline" onclick="closeMenu()">Track Record</a>
     <a href="#tools"    onclick="closeMenu()">Expertise</a>
@@ -366,7 +374,7 @@
             <div class="avail-dot"></div>
             <span class="avail-text">Kurzfristig verfügbar<span class="sep">|</span>DACH + Remote</span>
         </div>
-        <p class="hero-pre">Interim Manager<span class="sep">|</span>Transformation Consultant<span class="sep">|</span>Energiewende</p>
+        <p class="hero-pre">Interim Manager<span class="sep">|</span>Transformation Consultant<span class="sep">|</span>Energiewendeexperte</p>
         <h1 class="hero-name">Bodo<br><strong>Becker</strong></h1>
         <p class="hero-claim">Gemeinsam bauen, was die Energiewende braucht.</p>
         <div class="hero-rule" aria-hidden="true"></div>
@@ -462,10 +470,17 @@
                 </div>
             </div>
             <div class="about-stats reveal">
-                <div class="stat"><div class="stat-n">+233%</div><div class="stat-l">Portfoliowachstum epilot EVU</div></div>
-                <div class="stat"><div class="stat-n">3.600</div><div class="stat-l">Ladepunkte migriert</div></div>
-                <div class="stat"><div class="stat-n">4,5 MW</div><div class="stat-l">PV-Leistung Mainova</div></div>
-                <div class="stat"><div class="stat-n">3.000+</div><div class="stat-l">t CO₂ | Jahr eingespart</div></div>
+                <div class="stat"><div class="stat-n">+233%</div><div class="stat-l">Portfoliowachstum epilot</div></div>
+                <div class="stat"><div class="stat-n">4.000</div><div class="stat-l">Ladepunkte migriert</div></div>
+                <div class="stat"><div class="stat-n">4,5 MWp</div><div class="stat-l">PV-Leistung Mainova</div></div>
+                <div class="stat stat-wide">
+                    <svg class="stat-wide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    <div>
+                        <div class="stat-wide-label">Strom · Wärme · Mobilität</div>
+                        <div class="stat-wide-title">230 PV · 41 Wärme · 182 Ladepunkte</div>
+                        <div class="stat-wide-sub">mit 100 % Klimawirkung realisiert</div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -559,7 +574,7 @@
                 <div class="svc-num">06</div>
                 <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 <h3 class="svc-title">ISO 27001 | ISMS-Aufbau</h3>
-                <p class="svc-desc">Erstzertifizierung | KRITIS-Marktzugang | Audit-Steuerung – nachgewiesen bei epilot mit Trusted Cloud-Zertifizierung.</p>
+                <p class="svc-desc">Managementsystem aufbauen | Voraudit | Erstzertifizierung | Überwachungsaudits – der vollständige Weg zum Zertifikat, nicht nur das Ergebnis.</p>
             </article>
         </div>
     </div>
@@ -682,19 +697,19 @@
             <div class="tool-cat reveal">
                 <div class="tool-cat-title">Plattformen | Tools</div>
                 <div class="tool-pills">
-                    <span class="pill">Salesforce</span><span class="pill">HubSpot</span><span class="pill">Jira</span><span class="pill">Confluence</span><span class="pill">Make.com</span><span class="pill">Airtable</span><span class="pill">sevDesk</span><span class="pill">Zendesk</span><span class="pill">Datadog</span><span class="pill">SAP R/3</span><span class="pill">SAP B1</span><span class="pill">IBM Maximo</span>
+                    <span class="pill">epilot</span><span class="pill">Salesforce</span><span class="pill">HubSpot</span><span class="pill">Jira</span><span class="pill">Confluence</span><span class="pill">Make.com</span><span class="pill">Airtable</span><span class="pill">sevDesk</span><span class="pill">Zendesk</span><span class="pill">Datadog</span><span class="pill">SAP R/3</span><span class="pill">SAP B1</span><span class="pill">IBM Maximo</span>
                 </div>
             </div>
             <div class="tool-cat reveal">
                 <div class="tool-cat-title">Zertifizierungen</div>
                 <div class="tool-pills">
-                    <span class="pill">AWS Certified Security</span><span class="pill">ISO 27001 Auditor</span><span class="pill">ISO 9001 QM</span><span class="pill">VDA 6.3</span><span class="pill">Six Sigma Greenbelt</span><span class="pill">CPMA</span><span class="pill">Climate Reality Leader</span>
+                    <span class="pill">AWS Certified Security</span><span class="pill">ISO 27001 Auditor</span><span class="pill">ISO 9001 QM</span><span class="pill">VDA 6.3</span><span class="pill">Six Sigma Greenbelt</span><span class="pill">CPMA</span><span class="pill">Climate Reality Leader</span><span class="pill">Climate Fresk White Belt</span>
                 </div>
             </div>
             <div class="tool-cat reveal">
                 <div class="tool-cat-title">Methoden | Standards</div>
                 <div class="tool-pills">
-                    <span class="pill">OCPP | OCPI</span><span class="pill">AFIR</span><span class="pill">NIS2</span><span class="pill">§ 14a EnWG</span><span class="pill">Agile | Scrum</span><span class="pill">Business Model Canvas</span><span class="pill">Lean Startup</span><span class="pill">Kepner Tregoe</span><span class="pill">GTM Execution</span>
+                    <span class="pill">OCPP | OCPI</span><span class="pill">AFIR</span><span class="pill">NIS2</span><span class="pill">The Power MBA</span><span class="pill">Agile | Scrum</span><span class="pill">Business Model Canvas</span><span class="pill">Lean Startup</span><span class="pill">Kepner Tregoe</span><span class="pill">GTM Execution</span>
                 </div>
             </div>
         </div>
@@ -717,7 +732,7 @@
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
-                        <a href="/cdn-cgi/l/email-protection#b3d8dcddc7d2d8c7f3d4c1c6d6ddd4d6d1d2c6c79dd7d6"><span class="__cf_email__" data-cfemail="ec878382988d8798ac8b9e9989828b898e8d9998c28889">[email&#160;protected]</span></a>
+                        <a href="mailto:info@gruengebaut.de">info@gruengebaut.de</a>
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
@@ -725,7 +740,7 @@
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-                        Deutsch (Mutter)<span class="sep">|</span>Englisch (C1)<span class="sep">|</span>Spanisch (Basis)
+                        Deutsch (Muttersprache)<span class="sep">|</span>Englisch (C1)<span class="sep">|</span>Spanisch (Basis)
                     </li>
                 </ul>
                 <a href="https://www.linkedin.com/in/bodo-becker-climate-leader" target="_blank" rel="noopener noreferrer" class="li-badge">
