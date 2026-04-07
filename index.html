@@ -210,7 +210,8 @@
         .tl-tags{display:flex;flex-wrap:wrap;gap:.35rem}
         .tl-item:nth-child(odd) .tl-tags{justify-content:flex-end}
         .tl-tag{font-family:var(--fm);font-size:.58rem;letter-spacing:.08em;padding:.18rem .55rem;border:1px solid var(--border);color:var(--text-muted);text-transform:uppercase}
-        .tl-popup{position:fixed;z-index:200;width:300px;background:#0C1A0F;border:1px solid rgba(62,224,117,0.3);padding:1.4rem;pointer-events:none;opacity:0;transition:opacity .25s;box-shadow:0 24px 64px rgba(0,0,0,.95);}
+        .tl-popup{position:fixed;z-index:200;width:300px;background:#0C1A0F;border:1px solid rgba(62,224,117,0.3);padding:1.4rem;pointer-events:none;opacity:0;transition:opacity .25s;box-shadow:0 24px 64px rgba(0,0,0,.95);text-align:left!important;}
+        .tl-popup *{text-align:left!important;}
         .popup-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
         .popup-ico{width:34px;height:34px;flex-shrink:0;background:rgba(62,224,117,.1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--accent)}
         .popup-co{font-family:var(--fd);font-size:.95rem;font-weight:700;color:var(--accent)}
@@ -849,33 +850,39 @@
 
             if (!isOpen) {
                 const rect = this.getBoundingClientRect();
-                const isMobile = window.innerWidth <= 960;
-                const margin = 8;
+                const vw = window.innerWidth;
+                const vh = window.innerHeight;
+                const margin = 12;
+                const isMobile = vw <= 960;
+
+                // Measure popup height before positioning
+                popup.style.opacity = '0';
+                popup.style.display = 'block';
+                const ph = popup.offsetHeight || 340;
+                const pw = isMobile ? vw - margin * 2 : 300;
+
+                let left, top;
 
                 if (isMobile) {
-                    // Mobile: full width minus margins, below the item
-                    const w = window.innerWidth - margin * 2;
-                    let top = rect.bottom + margin;
-                    // If not enough space below, go above
-                    if (top + 340 > window.innerHeight) top = Math.max(margin, rect.top - 340);
-                    popup.style.width  = w + 'px';
-                    popup.style.left   = margin + 'px';
-                    popup.style.top    = top + 'px';
+                    left = margin;
+                    top  = rect.bottom + margin;
+                    if (top + ph > vh - margin) top = Math.max(margin, rect.top - ph - margin);
+                    if (top < margin) top = margin;
                 } else {
-                    // Desktop: 300px wide, smart left/right positioning
-                    const pw = 300;
-                    let left = rect.left;
-                    // Try to align with the item; shift left if overflowing right edge
-                    if (left + pw > window.innerWidth - margin) left = window.innerWidth - pw - margin;
+                    // Center popup horizontally relative to the clicked item
+                    left = rect.left + (rect.width / 2) - (pw / 2);
+                    // Clamp to viewport
+                    if (left + pw > vw - margin) left = vw - pw - margin;
                     if (left < margin) left = margin;
-                    // Below item; shift up if overflowing bottom
-                    let top = rect.bottom + margin;
-                    if (top + 340 > window.innerHeight) top = Math.max(margin, rect.top - 340);
-                    popup.style.width = pw + 'px';
-                    popup.style.left  = left + 'px';
-                    popup.style.top   = top + 'px';
+                    // Below item first, above if no room
+                    top = rect.bottom + margin;
+                    if (top + ph > vh - margin) top = rect.top - ph - margin;
+                    if (top < margin) top = margin;
                 }
 
+                popup.style.width        = pw + 'px';
+                popup.style.left         = left + 'px';
+                popup.style.top          = top + 'px';
                 popup.style.opacity      = '1';
                 popup.style.pointerEvents = 'auto';
             }
