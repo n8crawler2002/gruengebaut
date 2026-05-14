@@ -1,1 +1,617 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EL-Bau + gruengebaut — Bauen & Energie aus einer Hand</title>
+<meta name="description" content="EL-Bau Bauunternehmen und gruengebaut Energieberatung — Sanierung, Neubau, PV-Anlagen, Wallbox und Speicher im Raum Rhein-Sieg, Köln, Bonn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue-900:#0C2D4A;
+  --blue-800:#12405E;
+  --blue-700:#1A5276;
+  --blue-600:#1E6A9C;
+  --blue-500:#2980B9;
+  --blue-400:#5499CC;
+  --blue-300:#85B7DE;
+  --blue-200:#B5D4EE;
+  --blue-100:#DCE9F4;
+  --blue-50:#EDF3F9;
+  --amber:#C77B1A;
+  --amber-light:#FDF0D5;
+  --amber-dark:#8B5612;
+  --green:#2D6A4F;
+  --green-light:#D8F3DC;
+  --coral:#C44536;
+  --bg:#F4F6F9;
+  --card:#FFFFFF;
+  --text:#1A2332;
+  --text-muted:#5A6A7A;
+  --border:rgba(26,82,118,0.10);
+  --radius:8px;
+  --radius-lg:14px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.section{padding:80px 0}
 
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1100px;margin:0 auto;position:relative}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
+.nav-logo-icon{width:38px;height:38px;background:var(--blue-700);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;letter-spacing:.5px}
+.nav-logo .partner{color:var(--green);font-weight:400;font-size:13px}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-link{font-size:14px;color:var(--text-muted);cursor:pointer;padding:6px 0;border-bottom:2px solid transparent;transition:.2s}
+.nav-link:hover,.nav-link.active{color:var(--blue-700);border-bottom-color:var(--blue-700)}
+.nav-portal{font-size:13px;color:var(--text-muted);border-left:1px solid var(--border);padding-left:18px;cursor:pointer;transition:.2s}
+.nav-portal:hover{color:var(--blue-700)}
+.nav-hamburger{display:none;cursor:pointer;flex-direction:column;gap:5px;background:none;border:none;padding:8px}
+.nav-hamburger span{width:24px;height:2px;background:var(--text);border-radius:1px;transition:.3s}
+.nav-hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+@media(max-width:860px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--card);flex-direction:column;padding:24px;gap:16px;box-shadow:0 12px 32px rgba(0,0,0,.1);border-radius:0 0 var(--radius-lg) var(--radius-lg);z-index:100}
+  .nav-links.open{display:flex}
+  .nav-hamburger{display:flex}
+  .nav-portal{border-left:none;padding-left:0}
+}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:14px;font-weight:600;border-radius:6px;cursor:pointer;transition:.2s;border:none;white-space:nowrap}
+.btn-primary{background:var(--blue-700);color:#fff;padding:12px 28px}
+.btn-primary:hover{background:var(--blue-800);transform:translateY(-1px)}
+.btn-primary-lg{padding:15px 36px;font-size:16px}
+.btn-outline{background:transparent;color:var(--blue-700);border:1.5px solid var(--blue-700);padding:12px 28px}
+.btn-outline:hover{background:var(--blue-50)}
+.btn-outline-lg{padding:15px 36px;font-size:16px}
+.btn-ghost{background:var(--bg);color:var(--text);border:1px solid var(--border);padding:10px 22px}
+.btn-ghost:hover{background:var(--blue-50)}
+.btn-full{width:100%;justify-content:center}
+.badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 14px;border-radius:4px}
+.badge-blue{color:var(--blue-700);background:var(--blue-100)}
+.badge-amber{color:var(--amber-dark);background:var(--amber-light)}
+.badge-green{color:var(--green);background:var(--green-light)}
+.badge-coral{color:var(--coral);background:#FDECEA}
+
+/* HERO */
+.hero{display:flex;gap:48px;align-items:center;flex-wrap:wrap;padding:48px 0 64px}
+.hero-text{flex:1 1 420px;min-width:300px}
+.hero-text h1{font-size:clamp(34px,5vw,48px);line-height:1.1;margin:20px 0 18px}
+.hero-text h1 .accent{color:var(--blue-600)}
+.hero-text p{font-size:17px;color:var(--text-muted);max-width:480px;margin-bottom:32px;line-height:1.75}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.hero-visual{flex:1 1 360px;min-width:280px;height:400px;border-radius:20px;background:linear-gradient(145deg,var(--blue-800) 0%,var(--blue-600) 35%,var(--blue-500) 55%,var(--green) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px;position:relative;overflow:hidden}
+.hero-visual::before{content:'';position:absolute;top:-40%;right:-30%;width:70%;height:70%;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%}
+.hero-badge{position:absolute;top:24px;right:24px;background:rgba(255,255,255,.15);backdrop-filter:blur(12px);border-radius:12px;padding:16px 20px;color:#fff;font-size:14px;font-weight:500;line-height:1.5;border:1px solid rgba(255,255,255,.1)}
+.hero-badge small{font-size:12px;opacity:.7;display:block;margin-top:3px}
+.hero-stats-row{display:flex;gap:12px;margin-bottom:14px}
+.hero-stat-pill{background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border-radius:8px;padding:10px 16px;color:#fff;font-size:13px;flex:1;text-align:center;border:1px solid rgba(255,255,255,.06)}
+.hero-stat-pill strong{display:block;font-size:20px;font-weight:700;line-height:1.2}
+.hero-project{color:#fff;font-size:13px;line-height:1.6;background:rgba(0,0,0,.25);backdrop-filter:blur(8px);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,.06)}
+.hero-project strong{display:block;margin-bottom:3px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;opacity:.7}
+
+/* STATS */
+.stats-bar{display:flex;justify-content:space-around;flex-wrap:wrap;gap:24px;background:var(--card);border-radius:var(--radius-lg);padding:40px 32px;border:1px solid var(--border);position:relative;top:-32px;margin-bottom:-12px;z-index:2}
+.stat{text-align:center}
+.stat-number{font-size:44px;font-weight:700;color:var(--blue-700);line-height:1;font-family:'DM Serif Display',Georgia,serif}
+.stat-number span{font-size:24px}
+.stat-label{font-size:13px;color:var(--text-muted);margin-top:8px}
+
+/* SERVICES */
+.services-header{text-align:center;margin-bottom:48px}
+.services-header h2{font-size:34px;margin:16px 0 10px}
+.services-header p{color:var(--text-muted);max-width:560px;margin:0 auto;font-size:16px}
+.services-grid{display:flex;gap:20px;flex-wrap:wrap}
+.service-card{background:var(--card);border-radius:var(--radius-lg);padding:32px 28px;border:1px solid var(--border);flex:1;min-width:300px;transition:transform .2s,box-shadow .2s}
+.service-card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.service-card-head{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.service-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.service-icon-blue{background:var(--blue-100)}
+.service-icon-amber{background:var(--amber-light)}
+.service-card-head .title{font-weight:600;font-size:18px;margin-top:4px}
+.service-card ul{padding:0 0 0 20px;font-size:14px;color:var(--text-muted);line-height:2.2}
+.combo-banner{margin-top:24px;background:linear-gradient(135deg,var(--blue-100) 0%,var(--amber-light) 100%);border-radius:var(--radius-lg);padding:24px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.combo-banner .info{font-weight:600;font-size:16px}
+.combo-banner .sub{font-size:14px;color:var(--text-muted);margin-top:2px}
+
+/* PROJECTS */
+.projects-section{background:var(--card)}
+.projects-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:36px}
+.projects-top h2{font-size:34px;margin:16px 0 0}
+.filter-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.filter-tab{padding:7px 20px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:transparent;color:var(--text-muted);transition:.2s;text-transform:capitalize}
+.filter-tab.active,.filter-tab:hover{background:var(--blue-700);color:#fff;border-color:var(--blue-700)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.project-card{border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:transform .25s;animation:fadeUp .5s ease both}
+.project-card:hover{transform:translateY(-4px)}
+.project-img{height:180px;display:flex;align-items:flex-end;padding:14px;position:relative}
+.project-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.45),transparent 60%)}
+.project-img .tag{position:relative;z-index:1;font-size:11px;font-weight:600;color:rgba(255,255,255,.9);background:rgba(0,0,0,.3);backdrop-filter:blur(4px);padding:4px 12px;border-radius:5px;text-transform:uppercase;letter-spacing:.05em}
+.project-info{padding:16px 18px;background:var(--card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+.project-info .name{font-weight:600;font-size:15px}
+.project-info .detail{font-size:12px;color:var(--text-muted);margin-top:3px}
+
+/* BOOKING */
+.booking-section{background:var(--blue-900);color:#fff;position:relative;overflow:hidden}
+.booking-section::before{content:'';position:absolute;top:-20%;right:-10%;width:50%;height:140%;background:radial-gradient(circle,rgba(41,128,185,.2),transparent 70%);border-radius:50%}
+.booking-grid{display:flex;gap:48px;align-items:center;flex-wrap:wrap;position:relative;z-index:1}
+.booking-text{flex:1 1 400px;min-width:280px}
+.booking-text h2{font-size:34px;margin:16px 0;color:#fff}
+.booking-text p{color:rgba(255,255,255,.5);max-width:420px;margin-bottom:28px;font-size:16px;line-height:1.7}
+.booking-types{display:flex;gap:12px;flex-wrap:wrap}
+.booking-type{padding:11px 24px;border-radius:var(--radius);border:1px solid rgba(255,255,255,.12);font-size:14px;color:rgba(255,255,255,.7);cursor:pointer;transition:.2s;background:transparent;font-family:inherit}
+.booking-type:hover,.booking-type.active{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);color:#fff}
+.calendar-mock{flex:1 1 380px;min-width:280px;background:rgba(255,255,255,.04);border-radius:var(--radius-lg);padding:28px;border:1px solid rgba(255,255,255,.07)}
+.cal-label{font-size:12px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;margin-bottom:18px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:16px}
+.cal-day{text-align:center;font-size:11px;color:rgba(255,255,255,.3);padding:4px}
+.cal-num{text-align:center;font-size:13px;padding:8px 0;border-radius:6px;color:rgba(255,255,255,.22);cursor:default;transition:.15s}
+.cal-num.avail{color:#fff;background:var(--blue-600);cursor:pointer;font-weight:500}
+.cal-num.avail:hover{background:var(--blue-500);transform:scale(1.08)}
+.cal-num.today{background:rgba(255,255,255,.07);color:rgba(255,255,255,.5)}
+.cal-footer{font-size:12px;color:rgba(255,255,255,.3);display:flex;align-items:center;gap:8px}
+.cal-footer::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--blue-500)}
+
+/* FORM + PORTAL */
+.form-portal-grid{display:flex;gap:48px;flex-wrap:wrap}
+.form-col,.portal-col{flex:1 1 380px;min-width:280px}
+.form-col h2,.portal-col h2{font-size:32px;margin:16px 0 8px}
+.form-col>p,.portal-col>p{color:var(--text-muted);margin-bottom:24px;font-size:15px}
+.form-card,.portal-card{background:var(--card);border-radius:var(--radius-lg);padding:28px;border:1px solid var(--border)}
+.form-types{display:flex;gap:10px;margin-bottom:18px}
+.form-type{flex:1;text-align:center;padding:11px 0;border-radius:var(--radius);font-size:14px;cursor:pointer;border:1px solid var(--border);color:var(--text-muted);background:transparent;font-family:inherit;transition:.2s}
+.form-type.active{background:var(--blue-700);color:#fff;border-color:var(--blue-700);font-weight:600}
+.form-type:hover:not(.active){background:var(--blue-50)}
+.form-input{width:100%;padding:12px 16px;border-radius:var(--radius);border:1px solid var(--border);font-size:14px;font-family:inherit;margin-bottom:12px;background:var(--bg);transition:border .2s,box-shadow .2s}
+.form-input:focus{outline:none;border-color:var(--blue-400);box-shadow:0 0 0 3px rgba(41,128,185,.1)}
+textarea.form-input{resize:vertical;min-height:80px}
+.upload-zone{border:2px dashed rgba(26,82,118,.15);border-radius:12px;padding:24px 18px;text-align:center;cursor:pointer;margin-bottom:18px;transition:.2s}
+.upload-zone:hover{border-color:var(--blue-400);background:var(--blue-50)}
+.upload-icon{font-size:30px;margin-bottom:6px}
+.upload-hint{font-size:13px;color:var(--text-muted)}
+.upload-sub{font-size:11px;color:var(--text-muted);opacity:.6;margin-top:4px}
+.portal-item{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--border)}
+.portal-item:last-child{border-bottom:none}
+.portal-item-icon{width:44px;height:44px;border-radius:11px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.portal-item-label{font-weight:600;font-size:14px}
+.portal-item-desc{font-size:12px;color:var(--text-muted);margin-top:1px}
+
+/* INSTAGRAM */
+.insta-section{background:var(--card)}
+.insta-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:14px}
+.insta-header h2{font-size:28px;margin:12px 0 0}
+.insta-profile{display:flex;align-items:center;gap:14px}
+.insta-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#833AB4,#E1306C,#F77737);padding:2px;display:flex;align-items:center;justify-content:center}
+.insta-avatar-inner{width:100%;height:100%;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--blue-700)}
+.insta-info .name{font-weight:600;font-size:15px}
+.insta-info .handle{font-size:13px;color:var(--text-muted)}
+.insta-follow{padding:8px 20px;border-radius:8px;background:var(--blue-700);color:#fff;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:inherit}
+.insta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:4px}
+.insta-post{aspect-ratio:1;position:relative;overflow:hidden;cursor:pointer}
+.insta-post img{width:100%;height:100%;object-fit:cover}
+.insta-post-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:14px;position:relative}
+.insta-post-placeholder::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),transparent 55%)}
+.insta-overlay{position:absolute;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;gap:20px;opacity:0;transition:opacity .25s}
+.insta-post:hover .insta-overlay{opacity:1}
+.insta-overlay-stat{color:#fff;font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px}
+.insta-label{position:relative;z-index:1;font-size:12px;color:#fff;font-weight:500}
+.insta-stats{display:flex;gap:20px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.insta-stats-item{font-size:13px;color:var(--text-muted)}
+.insta-stats-item strong{color:var(--text);font-weight:600}
+
+/* FOOTER */
+.footer-section{background:var(--blue-900);color:#fff;padding:56px 0 28px;position:relative;overflow:hidden}
+.footer-section::before{content:'';position:absolute;bottom:-30%;left:-10%;width:40%;height:60%;background:radial-gradient(circle,rgba(41,128,185,.15),transparent 70%);border-radius:50%}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:36px;margin-bottom:44px;position:relative;z-index:1}
+.footer-col-title{font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.07em;margin-bottom:16px;color:rgba(255,255,255,.6)}
+.footer-col-text{font-size:13px;color:rgba(255,255,255,.4);line-height:2.1}
+.footer-col-text a{transition:.2s}
+.footer-col-text a:hover{color:rgba(255,255,255,.8)}
+.footer-brand{font-weight:700;font-size:20px;margin-bottom:16px}
+.footer-brand .partner{color:var(--green);font-weight:400;font-size:14px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px;color:rgba(255,255,255,.25);position:relative;z-index:1}
+.footer-socials{display:flex;gap:18px}
+.footer-socials a{color:rgba(255,255,255,.3);transition:.2s;cursor:pointer}
+.footer-socials a:hover{color:rgba(255,255,255,.7)}
+
+/* DEMO BANNER */
+.demo-banner{background:linear-gradient(135deg,var(--blue-800),var(--blue-600));color:#fff;text-align:center;padding:11px 16px;font-size:13px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:8px}
+.demo-banner-dot{width:6px;height:6px;border-radius:50%;background:#52B788;animation:pulse 2s infinite}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">
+  <span class="demo-banner-dot"></span>
+  Klick-Demo — Konzeptentwurf Website-Relaunch EL-Bau × gruengebaut
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#start" class="nav-logo">
+    <div class="nav-logo-icon">EL</div>
+    EL-Bau <span class="partner">+ gruengebaut</span>
+  </a>
+  <button class="nav-hamburger" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links">
+    <a class="nav-link active" href="#start">Start</a>
+    <a class="nav-link" href="#leistungen">Leistungen</a>
+    <a class="nav-link" href="#projekte">Projekte</a>
+    <a class="nav-link" href="#beratung">Beratung</a>
+    <a class="nav-link" href="#kontakt">Kontakt</a>
+    <a class="btn btn-primary" href="#beratung" style="font-size:13px;padding:9px 22px">Termin buchen</a>
+    <a class="nav-portal" href="#portal">Kundenportal →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="container" id="start">
+  <div class="hero">
+    <div class="hero-text fade-in">
+      <span class="badge badge-blue">Rhein-Sieg · Köln · Bonn</span>
+      <h1>Bauen &amp; Energie.<br><span class="accent">Alles aus einer Hand.</span></h1>
+      <p>Von der Sanierung bis zur Wallbox — EL-Bau und gruengebaut vereinen Bauhandwerk und Energieberatung für Ihr Projekt. Ein Ansprechpartner, alle Gewerke.</p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary btn-primary-lg" href="#beratung">Kostenlose Beratung buchen</a>
+        <a class="btn btn-outline btn-outline-lg" href="#kontakt">Anfrage einreichen</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-in" style="animation-delay:.15s">
+      <div class="hero-badge">🏗️ Bau + ⚡ Energie<small>Ein Ansprechpartner</small></div>
+      <div class="hero-stats-row">
+        <div class="hero-stat-pill"><strong>420+</strong> Projekte</div>
+        <div class="hero-stat-pill"><strong>15+</strong> Jahre</div>
+        <div class="hero-stat-pill"><strong>100%</strong> Zufrieden</div>
+      </div>
+      <div class="hero-project"><strong>Aktuelles Projekt</strong>PV-Anlage 12 kWp + Wallbox 22 kW · Einfamilienhaus, Troisdorf</div>
+    </div>
+  </div>
+</div>
+
+<!-- LEISTUNGEN -->
+<div class="section" id="leistungen">
+  <div class="container">
+    <div class="services-header fade-in">
+      <span class="badge badge-blue">Leistungen</span>
+      <h2>Zwei Kompetenzen. Ein Ergebnis.</h2>
+      <p>Bausubstanz und Energietechnik greifen ineinander — deshalb arbeiten wir als eingespieltes Team.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-card-head">
+          <div class="service-icon service-icon-blue">🏗️</div>
+          <div><span class="badge badge-blue">EL-Bau</span><div class="title">Baudienstleistungen</div></div>
+        </div>
+        <ul>
+          <li>Neubau, Umbau &amp; Sanierung</li>
+          <li>Mauer- &amp; Betonarbeiten</li>
+          <li>Kellerabdichtung &amp; Bautrocknung</li>
+          <li>Fassaden- &amp; Altbausanierung</li>
+          <li>Pflaster- &amp; Erdarbeiten</li>
+          <li>Entkernung &amp; Abbruch</li>
+        </ul>
+      </div>
+      <div class="service-card fade-in" style="transition-delay:.1s">
+        <div class="service-card-head">
+          <div class="service-icon service-icon-amber">⚡</div>
+          <div><span class="badge badge-amber">gruengebaut</span><div class="title">Energie &amp; Elektromobilität</div></div>
+        </div>
+        <ul>
+          <li>Rooftop-PV &amp; Balkonkraftwerke</li>
+          <li>Wallbox &amp; Ladeinfrastruktur</li>
+          <li>Batteriespeicher</li>
+          <li>Home Energy Management (HEMS)</li>
+          <li>Energieberatung &amp; Förderung</li>
+          <li>Monitoring &amp; Betriebsführung</li>
+        </ul>
+      </div>
+    </div>
+    <div class="combo-banner fade-in">
+      <div><div class="info">🔗 Kombiniert: Sanierung + Energiekonzept</div><div class="sub">Dacherneuerung gleich mit PV, Kellerabdichtung plus Wärmepumpen-Vorbereitung — ein Bauantrag, ein Zeitplan.</div></div>
+      <a class="btn btn-primary" href="#kontakt">Kombiangebot anfragen →</a>
+    </div>
+  </div>
+</div>
+
+<!-- REFERENZEN -->
+<div class="section projects-section" id="projekte">
+  <div class="container">
+    <div class="projects-top fade-in">
+      <div>
+        <span class="badge badge-blue">Referenzen</span>
+        <h2>Ausgewählte Projekte</h2>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="filterProjects(this,'alle')">Alle</button>
+        <button class="filter-tab" onclick="filterProjects(this,'bau')">Bau</button>
+        <button class="filter-tab" onclick="filterProjects(this,'energie')">Energie</button>
+        <button class="filter-tab" onclick="filterProjects(this,'kombi')">Kombi</button>
+      </div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card" data-type="bau">
+        <div class="project-img" style="background:linear-gradient(135deg,var(--blue-800),var(--blue-500))"><span class="tag">Sanierung</span></div>
+        <div class="project-info"><div class="name">Altbausanierung MFH Siegburg</div><div class="detail">3 Wohneinheiten · Komplettsanierung</div></div>
+      </div>
+      <div class="project-card" data-type="energie">
+        <div class="project-img" style="background:linear-gradient(135deg,#1B4332,#52B788)"><span class="tag">Energie</span></div>
+        <div class="project-info"><div class="name">PV 12 kWp + Speicher 10 kWh</div><div class="detail">EFH Troisdorf · Q.Cells + BYD</div></div>
+      </div>
+      <div class="project-card" data-type="kombi">
+        <div class="project-img" style="background:linear-gradient(135deg,var(--amber),#DDA15E)"><span class="tag">Bau + Energie</span></div>
+        <div class="project-info"><div class="name">Dachsanierung + PV + Wallbox</div><div class="detail">Reihenhaus Bonn-Beuel · 8,4 kWp</div></div>
+      </div>
+      <div class="project-card" data-type="bau">
+        <div class="project-img" style="background:linear-gradient(135deg,var(--blue-700),var(--blue-400))"><span class="tag">Abdichtung</span></div>
+        <div class="project-info"><div class="name">Kellerabdichtung Bonn-Beuel</div><div class="detail">Injektionsverfahren · 85 m²</div></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px" class="fade-in"><a class="btn btn-outline" href="#">Alle Projekte ansehen →</a></div>
+  </div>
+</div>
+
+<!-- BERATUNGSTERMIN -->
+<div class="section booking-section" id="beratung">
+  <div class="container">
+    <div class="booking-grid">
+      <div class="booking-text fade-in">
+        <span class="badge badge-green">Beratung</span>
+        <h2>Kostenlose Erstberatung<br>direkt online buchen</h2>
+        <p>Wählen Sie Ihren Wunschtermin — wir kommen zu Ihnen vor Ort. Bau-Projekt, Energiekonzept oder beides.</p>
+        <div class="booking-types">
+          <button class="booking-type" onclick="setBookingType(this)">🏗️ Bau-Beratung</button>
+          <button class="booking-type active" onclick="setBookingType(this)">⚡ Energie-Beratung</button>
+          <button class="booking-type" onclick="setBookingType(this)">🔗 Kombi</button>
+        </div>
+      </div>
+      <div class="calendar-mock fade-in" style="transition-delay:.1s">
+        <div class="cal-label">Calendly / TidyCal Widget-Platzhalter</div>
+        <div class="cal-grid">
+          <div class="cal-day">Mo</div><div class="cal-day">Di</div><div class="cal-day">Mi</div><div class="cal-day">Do</div><div class="cal-day">Fr</div><div class="cal-day">Sa</div><div class="cal-day">So</div>
+        </div>
+        <div class="cal-grid" id="calendarDays"></div>
+        <div class="cal-footer">Verfügbare Termine · Mai 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ANFRAGE + KUNDENPORTAL -->
+<div class="section" id="kontakt">
+  <div class="container">
+    <div class="form-portal-grid">
+      <div class="form-col fade-in">
+        <span class="badge badge-blue">Anfrage</span>
+        <h2>Projekt beschreiben,<br>Angebot erhalten</h2>
+        <p>Beschreiben Sie Ihr Vorhaben, laden Sie Fotos hoch — wir melden uns innerhalb von 24 Stunden.</p>
+        <div class="form-card">
+          <div class="form-types">
+            <button class="form-type" onclick="setFormType(this)">🏗️ Bau</button>
+            <button class="form-type" onclick="setFormType(this)">⚡ Energie</button>
+            <button class="form-type active" onclick="setFormType(this)">🔗 Beides</button>
+          </div>
+          <input class="form-input" placeholder="Vor- und Nachname">
+          <div style="display:flex;gap:10px">
+            <input class="form-input" placeholder="E-Mail" style="flex:1">
+            <input class="form-input" placeholder="Telefon" style="flex:1">
+          </div>
+          <input class="form-input" placeholder="Adresse / PLZ des Projekts (optional)">
+          <textarea class="form-input" placeholder="Beschreiben Sie Ihr Projekt..." rows="3"></textarea>
+          <div class="upload-zone">
+            <div class="upload-icon">📷</div>
+            <div class="upload-hint">Fotos hochladen</div>
+            <div class="upload-sub">Bestandsfotos, Dach, Zählerkasten, Grundriss — max. 10 MB</div>
+          </div>
+          <button class="btn btn-primary btn-full" style="padding:14px">Anfrage absenden →</button>
+        </div>
+      </div>
+      <div class="portal-col fade-in" id="portal" style="transition-delay:.1s">
+        <span class="badge badge-coral">Kundenportal</span>
+        <h2>Ihr persönlicher<br>Projektbereich</h2>
+        <p>Nach Auftragserteilung erhalten Sie Zugang zu Ihrem geschützten Bereich — alle Projektdokumente an einem Ort.</p>
+        <div class="portal-card">
+          <div class="portal-item"><div class="portal-item-icon">📄</div><div><div class="portal-item-label">Angebote &amp; Aufträge</div><div class="portal-item-desc">PDF-Download, Versionierung, digitale Freigabe</div></div></div>
+          <div class="portal-item"><div class="portal-item-icon">📐</div><div><div class="portal-item-label">Zeichnungen &amp; Pläne</div><div class="portal-item-desc">Grundrisse, Aufmaße, Elektropläne</div></div></div>
+          <div class="portal-item"><div class="portal-item-icon">🧾</div><div><div class="portal-item-label">Rechnungen</div><div class="portal-item-desc">Abschläge, Schlussrechnung, Zahlungsstatus</div></div></div>
+          <div class="portal-item"><div class="portal-item-icon">📊</div><div><div class="portal-item-label">Technische Datenblätter</div><div class="portal-item-desc">Wechselrichter, Wallbox, Module, Speicher</div></div></div>
+          <div class="portal-item"><div class="portal-item-icon">💬</div><div><div class="portal-item-label">Nachrichten</div><div class="portal-item-desc">Direkter Draht zum Projektteam</div></div></div>
+          <button class="btn btn-ghost btn-full" style="margin-top:18px">🔒 Zum Kundenportal einloggen →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INSTAGRAM -->
+<div class="section insta-section" id="instagram">
+  <div class="container">
+    <div class="insta-header fade-in">
+      <div>
+        <span class="badge badge-blue">Social Media</span>
+        <h2>Frisch von der Baustelle</h2>
+      </div>
+      <div class="insta-profile">
+        <div class="insta-avatar"><div class="insta-avatar-inner">EL</div></div>
+        <div class="insta-info">
+          <div class="name">elbau_troisdorf</div>
+          <div class="handle">Bau &amp; Energie · Rhein-Sieg</div>
+        </div>
+        <button class="insta-follow">Folgen</button>
+      </div>
+    </div>
+    <div class="insta-grid">
+      <div class="insta-post" data-likes="47" data-comments="3">
+        <div class="insta-post-placeholder" style="background:linear-gradient(145deg,var(--blue-800),var(--blue-500))">
+          <span class="insta-label" style="position:relative;z-index:2">🧱 Mauersanierung<br><span style="font-size:10px;opacity:.7">Altbau Siegburg · 2 Wochen</span></span>
+        </div>
+        <div class="insta-overlay">
+          <span class="insta-overlay-stat">❤️ 47</span>
+          <span class="insta-overlay-stat">💬 3</span>
+        </div>
+      </div>
+      <div class="insta-post" data-likes="124" data-comments="11">
+        <div class="insta-post-placeholder" style="background:linear-gradient(145deg,#1B4332,#52B788)">
+          <span class="insta-label" style="position:relative;z-index:2">⚡ Wallbox 22 kW montiert<br><span style="font-size:10px;opacity:.7">Troisdorf · Easee Home</span></span>
+        </div>
+        <div class="insta-overlay">
+          <span class="insta-overlay-stat">❤️ 124</span>
+          <span class="insta-overlay-stat">💬 11</span>
+        </div>
+      </div>
+      <div class="insta-post" data-likes="89" data-comments="7">
+        <div class="insta-post-placeholder" style="background:linear-gradient(145deg,#5C4A32,#A09070)">
+          <span class="insta-label" style="position:relative;z-index:2">🔨 Vorher / Nachher<br><span style="font-size:10px;opacity:.7">Fassade Bonn · 3 Monate</span></span>
+        </div>
+        <div class="insta-overlay">
+          <span class="insta-overlay-stat">❤️ 89</span>
+          <span class="insta-overlay-stat">💬 7</span>
+        </div>
+      </div>
+      <div class="insta-post" data-likes="203" data-comments="18">
+        <div class="insta-post-placeholder" style="background:linear-gradient(145deg,#0F3D0F,#4CAF50)">
+          <span class="insta-label" style="position:relative;z-index:2">☀️ 12 kWp am Netz!<br><span style="font-size:10px;opacity:.7">Q.Cells + BYD 10 kWh</span></span>
+        </div>
+        <div class="insta-overlay">
+          <span class="insta-overlay-stat">❤️ 203</span>
+          <span class="insta-overlay-stat">💬 18</span>
+        </div>
+      </div>
+      <div class="insta-post" data-likes="35" data-comments="2">
+        <div class="insta-post-placeholder" style="background:linear-gradient(145deg,var(--blue-900),var(--blue-600))">
+          <span class="insta-label" style="position:relative;z-index:2">🏗️ Kellerabdichtung<br><span style="font-size:10px;opacity:.7">Injektionstechnik · 85 m²</span></span>
+        </div>
+        <div class="insta-overlay">
+          <span class="insta-overlay-stat">❤️ 35</span>
+          <span class="insta-overlay-stat">💬 2</span>
+        </div>
+      </div>
+      <div class="insta-post" data-likes="156" data-comments="14">
+        <div class="insta-post-placeholder" style="background:linear-gradient(145deg,var(--amber-dark),var(--amber))">
+          <span class="insta-label" style="position:relative;z-index:2">🌞 Balkonkraftwerk 800W<br><span style="font-size:10px;opacity:.7">Plug & Play · Sankt Augustin</span></span>
+        </div>
+        <div class="insta-overlay">
+          <span class="insta-overlay-stat">❤️ 156</span>
+          <span class="insta-overlay-stat">💬 14</span>
+        </div>
+      </div>
+    </div>
+    <div class="insta-stats fade-in">
+      <span class="insta-stats-item"><strong>654</strong> Likes insgesamt</span>
+      <span class="insta-stats-item"><strong>55</strong> Kommentare</span>
+      <span class="insta-stats-item"><strong>6</strong> aktuelle Beiträge</span>
+      <span class="insta-stats-item" style="margin-left:auto"><a href="#" style="color:var(--blue-700);font-weight:500">Alle Beiträge auf Instagram →</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer-section">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">EL-Bau <span class="partner">+ gruengebaut</span></div>
+        <div class="footer-col-text">
+          Frankfurter Str. 10<br>53840 Troisdorf<br><br>
+          <a href="tel:+4922418940326">+49 2241 89 40 326</a><br>
+          <a href="mailto:info@el-bau.eu">info@el-bau.eu</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Bau</div>
+        <div class="footer-col-text">
+          <a href="#">Neubau &amp; Sanierung</a><br>
+          <a href="#">Mauerarbeiten</a><br>
+          <a href="#">Kellerabdichtung</a><br>
+          <a href="#">Fassadensanierung</a><br>
+          <a href="#">Pflasterarbeiten</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Energie</div>
+        <div class="footer-col-text">
+          <a href="#">PV-Anlagen</a><br>
+          <a href="#">Wallbox &amp; Laden</a><br>
+          <a href="#">Speicherlösungen</a><br>
+          <a href="#">Balkonkraftwerke</a><br>
+          <a href="#">HEMS</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Service</div>
+        <div class="footer-col-text">
+          <a href="#beratung">Beratungstermin</a><br>
+          <a href="#kontakt">Anfrage einreichen</a><br>
+          <a href="#portal">Kundenportal</a><br>
+          <a href="#">Ratgeber / Blog</a><br>
+          <a href="#">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Rechtliches</div>
+        <div class="footer-col-text">
+          <a href="#">Impressum</a><br>
+          <a href="#">Datenschutz</a><br>
+          <a href="#">Cookie-Einstellungen</a><br>
+          <a href="#">AGB</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EL-Bau · Inhaber Aziz El Abdaoui · Alle Rechte vorbehalten</span>
+      <div class="footer-socials">
+        <a href="#">Instagram</a>
+        <a href="#">WhatsApp</a>
+        <a href="#">Google Maps</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Calendar
+const cal=document.getElementById('calendarDays');
+const avail=[5,9,12,16,19,23,26];
+for(let i=1;i<=30;i++){const d=document.createElement('div');d.className='cal-num'+(avail.includes(i)?' avail':'')+(i===14?' today':'');d.textContent=i;if(avail.includes(i))d.onclick=()=>alert('Demo: Termin am '+i+'. Mai 2026 gewählt.\nIn der Live-Version öffnet sich hier Calendly.');cal.appendChild(d)}
+
+// Filter
+function filterProjects(btn,type){
+  document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(c=>{c.style.display=(type==='alle'||c.dataset.type===type)?'':'none'});
+}
+
+// Form type
+function setFormType(btn){document.querySelectorAll('.form-type').forEach(t=>t.classList.remove('active'));btn.classList.add('active')}
+
+// Booking type
+function setBookingType(btn){document.querySelectorAll('.booking-type').forEach(t=>t.classList.remove('active'));btn.classList.add('active')}
+
+// Scroll nav highlight
+const secs=['start','leistungen','projekte','beratung','kontakt','instagram'];
+window.addEventListener('scroll',()=>{const y=scrollY+120;for(let i=secs.length-1;i>=0;i--){const el=document.getElementById(secs[i]);if(el&&el.offsetTop<=y){document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));document.querySelector(`.nav-link[href="#${secs[i]}"]`)?.classList.add('active');break}}});
+
+// Fade-in observer
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+// Close mobile nav on link click
+document.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',()=>{document.querySelector('.nav-links')?.classList.remove('open');document.querySelector('.nav-hamburger')?.classList.remove('open')}));
+</script>
+</body>
+</html>
